@@ -1,0 +1,124 @@
+<!-- company_home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome, {{ company.name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            height:60%;
+            padding: 10vh;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Center the container */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .welcome-heading {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .job-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .job-item {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+        }
+        .job-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .job-details {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .job-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .job-link:hover {
+            text-decoration: none;
+        }
+        .post-job-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .logout-form {
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .logout-button {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .company-image {
+           margin-left:30vw;
+            max-width: 15vw;
+            margin-top:-8vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2 class="welcome-heading">Welcome {{ company.name }}</h2>
+        <img src="{{ company.image.url }}" alt="{{ company.name }} Image" class="company-image">
+        <h3>Your Posted Jobs</h3>
+        <ul class="job-list">
+            {% for job in jobs %}
+            <li class="job-item">
+                <h4 class="job-title">{{ job.role }}</h4>
+                <p class="job-details">
+                    Slots: {{ job.slots }} | 
+                    <a href="{% url 'view_applications' job.id %}" class="job-link">View Applications</a>
+                    | <a href="{% url 'post_job' %}" class="job-link">Edit</a>
+                    | <a href="{% url 'delete_job' job.id %}" class="job-link">Delete</a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{% url 'post_job' %}" class="post-job-button">Post a Job</a>
+        
+        <!-- Logout Button -->
+        <form action="{% url 'company_logout' %}" method="POST" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

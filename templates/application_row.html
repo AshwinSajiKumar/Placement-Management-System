@@ -1,0 +1,29 @@
+<!-- application_row.html -->
+<tr>
+    <td><a href="{% url 'student_details' application.student.id %}">{{ application.student.user.username }}</a></td>
+    <td>{{ application.get_status_display }}</td>
+    <td>
+      {% if application.status != 'REJECTED' %}
+        <a href="{% url 'update_application_status' application.id 'REJECTED' %}" style="background-color:red; border-radius: 5px; padding: 5px 10px; color: #fff;">Reject</a>
+      {% endif %}
+      {% if application.status == 'REJECTED' %}
+        <a href="{% url 'update_application_status' application.id 'ACCEPTED' %}" style="background-color:green; border-radius: 5px; padding: 5px 10px; color: #fff;">Undo Rejection</a>
+      {% endif %}
+    </td>
+    <td>
+      <a href="{% url 'update_application_status' application.id 'ACCEPTED' %}" style="background-color:#FF5722; border-radius: 5px; padding: 5px 10px; color: #fff;">Accept</a>
+    </td>
+    <td>
+      <a href="{% url 'update_application_status' application.id 'ROUND2' %}" style="background-color:#9C27B0; border-radius: 5px; padding: 5px 10px; color: #fff;">Round 2</a>
+    </td>
+    <td>
+      <a href="{% url 'update_application_status' application.id 'ROUND3' %}" style="background-color:violet; border-radius: 5px; padding: 5px 10px; color: #fff;">Round 3</a>
+    </td>
+    <td>
+      <a href="{% url 'update_application_status' application.id 'ROUND_Final' %}" style="background-color:grey;border-radius: 5px; padding: 5px 10px; color: #fff;">Final Round</a>
+    </td>
+    <td>
+      <a href="{% url 'update_application_status' application.id 'PLACED' %}" style="background-color:black; border-radius: 5px; padding: 5px 10px; color: #fff;">PLACED</a>
+    </td>
+    <td><a href="{% url 'update_application_status' application.id 'Remove' %}" ><i class="fa fa-trash me-2"></i></a></td>
+</tr>

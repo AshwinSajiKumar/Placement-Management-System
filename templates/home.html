@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name ="viewport" content="with=device-width, intial-scale=1.0">
+    <title>Campus Placement Management- Home page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;0,900;1,500;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+<style>
+*{
+    margin:0;
+    padding:0;
+
+}
+body{
+    font-family: 'Manrope', sans-serif;
+}
+.header{
+    min-height: 100vh;
+    width:100%;
+    background-image: linear-gradient(rgba(0,0.5,0.3,0.7),rgba(0,0.5,0.3,0.7)),url("https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=869&q=80");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.text-box{
+    width: 90%;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+}
+.text-box h1{
+    font-size: 50px ;
+}
+.text-box p{
+    margin: 10px 0 40px ;
+    font-size: 20px;
+    color:#ffffff;
+}
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    color:#e7e7f4;
+    border: 1px solid #e7e7f4;
+    padding: 20px 34px;
+    font-size: 15px;
+    background: transparent;
+    position: relative;
+    cursor: pointer ;
+
+}
+.hero-btn:hover{
+    border: 1px solid #75788a;
+    background: #75788a;
+    transform: 1s;
+}
+@media(max-width:700px){
+    .text-box h1{
+        font-size: 20px ;
+    }
+    .nav-links ul li{
+        display: block;
+    }
+    .nav-links{
+        position: absolute;
+        background: #75788a;
+        height: 100vh;
+        width:200px;
+        top:0;
+        right:0;
+        text-align: left;
+        z-index:2;
+    }
+
+}
+/*-------vistors------*/
+.vistors{
+    width:80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+p{
+    color: #777;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px ;
+}
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.vistors-col{
+    flex-basis: 31%;
+    background: #f2f3f4;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 5vh 2vw;
+    box-sizing: border-box;
+    transition: 0.5s;
+    height:20vh;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin:10px 0;
+}
+.vistors-col:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+@media(max-width:700px){
+    .row{
+        flex-direction: column;
+    }
+}
+.nav-links{
+    text-decoration: none;;
+}
+.link {
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: 1px solid #a5adb5;
+    padding: 10px 14px;
+    font-size: 12px;
+    position: relative;
+    cursor: pointer ;
+  }
+
+  .link:hover {
+    background-color:#a5adb5;
+  }
+
+  .register{
+    width:80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+p{
+    color: #635f5f;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px ;
+}
+.row2{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.register-col{
+    flex-basis: 45%;
+    background: #f2f3f4;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 8vh 2vw;
+    box-sizing: border-box;
+    transition: 0.5s;
+    height:40vh;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin:10px 0;
+}
+.register-col:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+.abhi{
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+    <section class="header">
+        <div class="text-box">
+            <h1>Welcome to Student Placement Management System</h1>
+            <p>Unlock Your Potential, Embrace Your Future: Empowering Students for Successful Placements!!</p>
+           
+        </div>
+
+    </section>
+    <section class="vistors">
+        <h1>Enter the Gateway to Placement Success</h1>
+        <p>Please login to the corresponding page for further details</details></p>
+        <div class="row">
+            <div class="vistors-col">
+                <h3>Admin/Staff</h3>
+                <div class="abhi">
+                <a href="http://127.0.0.1:8000/admin/login/?next=/admin/" class="link">Login as Admin</a>
+                </div>
+            </div>
+            <div class="vistors-col">
+                <h3>Student</h3>
+                <div class="abhi">
+                <a href="http://127.0.0.1:8000/home/login/" class="link">Login as Student</a>
+                </div>
+            </div>
+            <div class="vistors-col">
+                <h3 >Company</h3>
+                <div class="abhi">
+                <a href="http://127.0.0.1:8000/company/login/" class="link" >Login as Company</a>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+    </section>
+</body>
+</html>

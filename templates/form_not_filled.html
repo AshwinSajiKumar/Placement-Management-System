@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Not Filled</title>
+  <style>
+    body {
+      background-color: #333333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #222222;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      color: #ffffff;
+    }
+
+    .card-title {
+      margin-bottom: 0;
+      font-size: 24px;
+    }
+
+    .card-body p {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .card-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+      font-size: 16px;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #111111;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Form Not Filled</h1>
+    <p>You need to fill out the Student Details form before applying for jobs.</p>
+    <a href="{% url 'form_details' %}" class="btn btn-secondary">Go to Student Details Form</a>
+  </div>
+
+</body>
+</html>

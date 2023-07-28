@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Details</title>
+  <style>
+    body {
+      background-color: #333;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+.container {
+  max-width: 400px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  height: 170px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+}
+
+p {
+  color: #fff;
+  margin-bottom: 10px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ student.image.url }}" alt="Student Image">
+    <h2>{{ student.user.first_name }} {{student.user.last_name}}</h2>
+    <p>Branch: {{ student.branch }}</p>
+    <p>Admission No: {{ student.admission_no }}</p>
+    <p>Personal Email: {{ student_details.PEmailId }}</p>
+    <p>Current CGPA: {{ student_details.Current_CGPA }}</p>
+    <p>Supply Count: {{ student_details.Supply_Count }}</p>
+    <p>Internships Done: {{ student_details.Internship }}</p>
+    <p>LinkedIn: {{ student_details.LinkedIn }}</p>
+    <!-- Display more student details as needed -->
+  </div>
+</body>
+</html>

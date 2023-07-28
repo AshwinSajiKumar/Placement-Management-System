@@ -1,0 +1,32 @@
+
+
+    {% extends 'admin/login.html' %}
+
+    {% block title %}Your Custom Title{% endblock %}
+
+
+
+
+    {% block extrahead %}
+        {{ block.super }}
+        <style>
+            .custom-button {
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: black;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+        </style>
+    {% endblock %}
+
+    {% block content %}
+        <div style="margin-bottom: 20px;">
+            {{ block.super }}
+        </div>
+        <div style="text-align: center;">
+            <a href="{% url 'student_import:csvlogin' %}" class="custom-button">Register a Bulk Amount Of Students</a>
+        </div>
+    {% endblock %}
