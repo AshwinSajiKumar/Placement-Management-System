@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Job Application Limit Exceeded</title>
+  <style>
+    body {
+      background-color: #333333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #222222;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      color: #ffffff;
+    }
+
+    .glow {
+      animation: glow-animation 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow-animation {
+      from {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      }
+      to {
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .card-title {
+      margin-bottom: 0;
+      font-size: 24px;
+    }
+
+    .card-body {
+      margin-bottom: 20px; /* Add more space here */
+    }
+
+    .card-body p {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .card-footer {
+      text-align: center;
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+      font-size: 16px;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background-color: #111111;
+    }
+  </style>
+</head>
+<body>
+  <div class="container glow">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Job Application Limit Exceeded</h5>
+      </div>
+      <div class="card-body">
+        <p>You have already applied for the maximum number of jobs.</p>
+        <p>Please remove some of your existing job applications before applying for more jobs.</p>
+      </div>
+      <div class="card-footer">
+        <a href="{% url 'applied_jobs' %}" class="btn btn-secondary">Go Back</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

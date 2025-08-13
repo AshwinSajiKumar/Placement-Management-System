@@ -1,0 +1,1 @@
+web: gunicorn stdplacement.wsgi --log-file - 

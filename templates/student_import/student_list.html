@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        .button-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="{% url 'student_import:csv_import' %}">Import CSV</a>
+        <a href="{% url 'student_import:csvlogout' %}">Logout</a>
+    </div>
+    <h1>Student List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Branch</th>
+                <th>Admission No</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.user }}</td>
+                <td>{{ student.branch }}</td>
+                <td>{{ student.admission_no }}</td>
+                <td>{{ student.StdEmail }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post a Job</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-heading {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .form-control {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% if form.instance.pk %}
+            <h2 class="form-heading">Edit Job</h2>
+        {% else %}
+            <h2 class="form-heading">Post a Job</h2>
+        {% endif %}
+
+        <form method="POST" action="{% url 'post_job' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_slots" class="form-label">Slots:</label>
+                <input type="text" name="slots" id="id_slots" class="form-control" autocomplete="off" required value="{{ form.slots.value }}"  oninput="validateNumberInput('id_slots')">
+            </div>
+            <div class="form-group">
+                <label for="id_role" class="form-label">Role:</label>
+                <input type="text" name="role" id="id_role" class="form-control" autocomplete="off" required value="{{ form.role.value }}">
+            </div>
+            <div class="form-group">
+                <label for="id_cgpa" class="form-label">CGPA:</label>
+                <input type="text" name="cgpa" id="id_cgpa" class="form-control" autocomplete="off" required value="{{ form.cgpa.value }}"  oninput="validateNumberInput('id_cgpa')">
+            </div>
+            <div class="form-group">
+                <label for="id_Backpaper" class="form-label">Backpaper:</label>
+                <input type="text" name="Backpaper" id="id_Backpaper" class="form-control" autocomplete="off" required value="{{ form.Backpaper.value }}" oninput="validateNumberInput('id_Backpaper')">
+            </div>
+            <div class="form-group">
+                <label for="id_Lpa" class="form-label">LPA:</label>
+                <input type="text" name="Lpa" id="id_Lpa" class="form-control" autocomplete="off" required value="{{ form.Lpa.value }}"  oninput="validateNumberInput('id_Lpa')">
+            </div>
+            <div class="form-group">
+                <label for="id_internship" class="form-label">Internship:</label>
+                <input type="text" name="internship" id="id_internship" class="form-control" autocomplete="off" required value="{{ form.internship.value }}"  oninput="validateNumberInput('id_internship')">
+            </div>
+            <div class="form-group">
+                <label for="id_tech" class="form-label">Tech:</label>
+                <input type="text" name="tech" id="id_tech" class="form-control" autocomplete="off" required value="{{ form.tech.value }}">
+            </div>
+            <div class="form-group">
+                <label for="id_City" class="form-label">City:</label>
+                <input type="text" name="City" id="id_City" class="form-control" autocomplete="off" required value="{{ form.City.value }}">
+            </div>
+            <div class="form-group">
+                <label for="id_Country" class="form-label">Country:</label>
+                <input type="text" name="Country" id="id_Country" class="form-control" autocomplete="off" required value="{{ form.Country.value }}">
+            </div>
+            <div class="form-group">
+                <label for="id_tenthper" class="form-label">Tenth Percentage:</label>
+                <input type="text" name="tenthper" id="id_tenthper" class="form-control" autocomplete="off" required value="{{ form.tenthper.value }}" oninput="validatePercentageInput('id_tenthper')">
+            </div>
+            <div class="form-group">
+                <label for="id_twelthper" class="form-label">Twelth Percentage:</label>
+                <input type="text" name="twelthper" id="id_twelthper" class="form-control" autocomplete="off" required value="{{ form.twelthper.value }}" oninput="validatePercentageInput('id_twelthper')">
+            </div>
+            <button type="submit" class="submit-button">Save</button>
+        </form>
+    </div>
+        <script>
+            function validateNumberInput(inputId) {
+                const input = document.getElementById(inputId);
+                const value = input.value;
+                const isNumber = /^[0-9]*$/.test(value);
+    
+                if (!isNumber) {
+                    alert("Please enter a valid number.");
+                    input.value = '';
+                }
+            }
+        </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

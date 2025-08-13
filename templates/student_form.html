@@ -1,0 +1,450 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        .form-container {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-top: -2vh;
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333333;
+        }
+
+        .form-container h3 {
+            margin-top: 0;
+            text-align: center;
+            color: #333333;
+            text-decoration: underline;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-container .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .form-container .form-group input,
+        .form-container .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 3px;
+            border: none;
+            background-color: #f5f5f5;
+            color: #333333;
+            transition: background-color 0.3s;
+        }
+
+        .form-container .form-group input[type="text"]:focus,
+        .form-container .form-group input[type="email"]:focus,
+        .form-container .form-group input[type="number"]:focus,
+        .form-container .form-group input[type="textarea"]:focus,
+        .form-container .form-group input[type="date"]:focus,
+        .form-container .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px #66b3ff;
+        }
+
+        .form-container .form-group input[type="submit"] {
+            background: #292b2c;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container .form-group input[type="submit"]:hover {
+            background: #4caf50;
+        }
+
+        .form-container .form-group input[type="text"]:hover,
+        .form-container .form-group input[type="email"]:hover,
+        .form-container .form-group input[type="number"]:hover,
+        .form-container .form-group input[type="textarea"]:hover,
+        .form-container .form-group input[type="date"]:hover,
+        .form-container .form-group textarea:hover {
+            background-color: #e8e8e8;
+        }
+
+        .form-container .form-group input[type="text"]:focus,
+        .form-container .form-group input[type="email"]:focus,
+        .form-container .form-group input[type="number"]:focus,
+        .form-container .form-group input[type="textarea"]:focus,
+        .form-container .form-group input[type="date"]:focus,
+        .form-container .form-group textarea:focus {
+            background-color: #f0f0f0;
+        }
+
+        .ash {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .education {
+            flex-basis: 100%;
+        }
+
+        @media (min-width: 576px) {
+            .education {
+                flex-basis: auto;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .personal-details {
+                flex-basis: 45%;
+                margin-right: 50px;
+            }
+
+            .education {
+                flex-basis: 45%;
+                margin-left: 50px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3" style="background-color: white;">
+            <nav class="navbar">
+                <a href="http://127.0.0.1:8000/home/student-home/" class="navbar-brand mx-4 mb-3">
+                    <img src="{% static 'images/logo.jpg' %}" style="width: 170px; height: 120px;">
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    {% if user.is_authenticated %}
+                    <div class="position-relative">
+                        <a href="http://127.0.0.1:8000/home/update-profile-image/">
+                            <img class="rounded-circle" src="{{student.image.url}}" alt=""
+                                style="width: 60px; height: 60px;">
+                        </a>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Welcome {{user.first_name}}</h6>
+                        <span>Student:{{student.branch}}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="http://127.0.0.1:8000/home/student-home/" class="nav-item nav-link "><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="http://127.0.0.1:8000/student/form/" class="nav-item nav-link active"><i
+                            class="fa fa-pen me-2"></i>Edit Your Profile</a>
+                    <a href="http://127.0.0.1:8000/student/view-jobs/" class="nav-item nav-link "><i
+                            class="fa fa-briefcase me-2"></i>Job Openings</a>
+                    <a href="{% url 'applied_jobs' %}" class="nav-item nav-link  "><i class="fa fa-plus me-2"></i>
+                        Applied Jobs</a>
+                    <a href="{% url 'change_password' %}" class="nav-item nav-link"><i
+                            class="fa fa-key me-2"></i>Change Password</a>
+                    <a href="{% url 'logout' %}" class="nav-item nav-link"><i
+                            class="fa fa-sign-out-alt me-2"></i>Log Out</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-light sticky-top px-4 py-0">
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars" style="color: #b62a5e;"></i>
+                </a>
+            </nav>
+            <!-- Navbar End -->
+
+            <div class="container-fluid pt-4 px-4">
+                <form method="post" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-4 form-container">
+                        <div class="col-12">
+                            <h2>Student Form</h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="personal-details">
+                                <h3>Personal Details</h3>
+                                <div class="form-group">
+                                    <label for="name">Your UID:</label>
+                                    <input type="text" id="uid" name="uid"
+                                        value="{{ student_details.uid|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Your Phone No:</label>
+                                    <input type="text" id="phone" name="phone"
+                                        value="{{ student_details.phno|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="mail">Your Personal EmailId:</label>
+                                    <input type="email" id="mailid" name="mailid"
+                                        value="{{ student_details.PEmailId|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Your Address:</label>
+                                    <textarea rows="4" cols="50" id="address" name="address">{{ student_details.address|default:'' }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label for="dob">Date of Birth (Current Entered Date:{{ student_details.Dob|default:'' }})</label>
+                                  <input type="date" id="dob" name="dob"  >
+                                </div>
+                                <div class="form-group">
+                                  <label for="aadhaar">Your Aadhaar Number:</label>
+                                  <input type="text" id="aadhaar" name="aadhaar" value="{{ student_details.Aadhar|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="pan">Your Pan Number:</label>
+                                  <input type="text" id="pan" name="pan" value="{{ student_details.Pan|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="passport">Your Indian Passport Number:</label>
+                                  <input type="text" id="passport" name="passport" value="{{ student_details.Passport|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="blood">Your Blood Group:</label>
+                                  <input type="text" id="blood" name="blood"value="{{ student_details.BloodGrp|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="religion">Your Religion:</label>
+                                  <input type="text" id="religion" name="religion" value="{{ student_details.Religion|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="fname">Your Father's Name:</label>
+                                  <input type="text" id="fname" name="fname" value="{{ student_details.Fathers_Name|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="mname">Your Mother's Name:</label>
+                                  <input type="text" id="mname" name="mname" value="{{ student_details.Mothers_Name|default:'' }}">
+                                </div>
+                                 <div class="form-group">
+                                  <label for="foccupation">Your Father's Occupation:</label>
+                                  <input type="text" id="foccupation" name="foccupation"value="{{ student_details.Father_Occupation|default:'' }}" >
+                                </div> 
+                                <div class="form-group">
+                                  <label for="moccupation">Your Mother's Occupation:</label>
+                                  <input type="text" id="moccupation" name="moccupation"value="{{ student_details.Mother_Occupation|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="lgphno">Your Local Guardian's Phone No:</label>
+                                  <input type="text" id="lgphno" name="lgphno" value="{{ student_details.LocalGuardian_Ph|default:'' }}">
+                              </div>
+                                <div class="form-group">
+                                  <label for="district">Your District:</label>
+                                  <input type="text" id="district" name="district"value="{{ student_details.District|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="pincode">Your PinCode:</label>
+                                  <input type="text" id="pincode" name="pincode" value="{{ student_details.Pincode|default:'' }}" >
+                                </div>
+                              </div>
+                              </div>
+                        <div class="col-lg-6">
+                            <div class="education">
+                                <h3>Education</h3>
+                                <div class="form-group">
+                                    <label for="tenthschool">Your 10th School Name:</label>
+                                    <input type="text" id="tenthschool" name="tenthschool"
+                                        value="{{ student_details.TenthSchoolName|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenthpercentage">Your 10th Percentage:</label>
+                                    <input type="number" id="tenthpercentage" name="tenthpercentage"
+                                        value="{{ student_details.TenthPercentage|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenthyear">Your 10th Passout Year:</label>
+                                    <input type="text" id="tenthyear" name="tenthyear"
+                                        value="{{ student_details.TenthPassoutYear|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="twelthschool">Your 12th School Name:</label>
+                                  <input  type="text" id="twelthschool" name="twelthschool"value="{{ student_details.TwelthSchoolName|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="twelthpercentage">Your 12th Percentage:</label>
+                                  <input  type="number" id="twelthpercentage" name="twelthpercentage"value="{{ student_details.TwelthPercentage|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="twelthyear">Your 12th Passout Year:</label>
+                                  <input  type="text" id="twelthyear" name="twelthyear"value="{{ student_details.TwelthPassoutYear|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="keam">Kerala Entrance Score:</label>
+                                  <input  type="text" id="keam" name="keam" value="{{ student_details.Keam|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="one">Your S1 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="one" name="one" value="{{ student_details.S_one|default:'' }}"  >
+                                </div>
+                                <div class="form-group">
+                                  <label for="two">Your S2 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="two" name="two" value="{{ student_details.S_two|default:'' }}">
+                                </div>
+                                <div class="form-group">
+                                  <label for="three">Your S3 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="three" name="three" value="{{ student_details.S_three|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="four">Your S4 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="four" name="four"value="{{ student_details.S_four|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="five">Your S5 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="five" name="five"value="{{ student_details.S_five|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="six">Your S6 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="six" name="six"value="{{ student_details.S_six|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="seven">Your S7 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="seven" name="seven"value="{{ student_details.S_seven|default:'' }}" >
+                                </div>
+                                <div class="form-group">
+                                  <label for="eight">Your S8 SGPA:(Enter 0 if result not yet Published)</label>
+                                  <input  type="number" id="eight" name="eight" value="{{ student_details.S_eight|default:'' }}">
+                                </div>     
+                                <div class="form-group">
+                                  <label for="cgpa">Your Current CGPA:</label>
+                                  <input  type="number" id="cgpa" name="cgpa"value="{{ student_details.Current_CGPA|default:'' }}" >
+                                </div> 
+                                   <div class="form-group">
+                                    <label for="supply">Total No: of Live Supply:</label>
+                                    <input  type="number" id="supply" name="supply"value="{{ student_details.Supply_Count|default:'' }}" >
+                                  </div> 
+                                  <div class="form-group">
+                                    <label for="linkedin">LinkedIn Profile Link:</label>
+                                    <input  type="text" id="linkedin" name="linkedin"value="{{ student_details.LinkedIn|default:'' }}" >
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="internship">Number of Internships Done:</label>
+                                    <input type="text" id="internship" name="internship" value="{{ student_details.Internship|default:'' }}">
+                                </div> 
+                              </div> 
+                              
+                              </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="submit" value="Submit">
+                                <p>(To Update Please Enter your Date of Birth)</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Content End -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/chart/chart.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+      function validatePhoneNumber() {
+          const phoneInput = document.getElementById("phone");
+          const phoneValue = phoneInput.value.trim();
+          const isValidPhoneNumber = /^[0-9]{10}$/.test(phoneValue);
+  
+          if (!isValidPhoneNumber) {
+              alert("Please enter a valid 10-digit phone number.");
+              phoneInput.value = '';
+          }
+      }
+  
+      function validateGuardianPhoneNumber() {
+          const guardianPhoneInput = document.getElementById("lgphno");
+          const guardianPhoneValue = guardianPhoneInput.value.trim();
+          const isValidGuardianPhoneNumber = /^[0-9]{10}$/.test(guardianPhoneValue);
+  
+          if (!isValidGuardianPhoneNumber) {
+              alert("Please enter a valid 10-digit guardian phone number.");
+              guardianPhoneInput.value = '';
+          }
+      }
+  
+      function validateSGPA(inputId) {
+          const sgpaInput = document.getElementById(inputId);
+          const sgpaValue = sgpaInput.value.trim();
+          const isValidSGPA = /^0*(\d*\.\d+|\d+)$/.test(sgpaValue);
+  
+          if (!isValidSGPA) {
+              alert("Please enter a valid SGPA value.");
+              sgpaInput.value = '';
+          }
+      }
+  
+      function validateInternship() {
+          const internshipInput = document.getElementById("internship");
+          const internshipValue = internshipInput.value.trim();
+          const isValidInternship = /^[0-9]+$/.test(internshipValue);
+  
+          if (!isValidInternship) {
+              alert("Please enter a valid integer for the number of internships.");
+              internshipInput.value = '';
+          }
+      }
+  
+      window.onload = function () {
+          document.getElementById("phone").addEventListener("blur", validatePhoneNumber);
+          document.getElementById("lgphno").addEventListener("blur", validateGuardianPhoneNumber);
+  
+          const sgpaInputs = ["one", "two", "three", "four", "five", "six", "seven", "eight", "cgpa"];
+          sgpaInputs.forEach((inputId) => {
+              document.getElementById(inputId).addEventListener("blur", () => validateSGPA(inputId));
+          });
+  
+          document.getElementById("internship").addEventListener("blur", validateInternship);
+      };
+  </script>
+  
+
+</body>
+
+</html>

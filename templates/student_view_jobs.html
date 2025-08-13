@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Job List</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <!-- Google Web Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .row {
+            margin-top: 5vh;
+        }
+
+        .title {
+            margin-left: 0.5vw;
+        }
+
+        .card {
+            border-radius: 20px;
+            border: 1px solid grey;
+            margin-bottom: 1vw;
+            overflow: hidden;
+            padding: 0.5vw;
+            position: relative;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.4);
+        }
+
+        .card figcaption {
+            background-color: #fff;
+            padding: 1vw;
+        }
+
+        .card figcaption a {
+            color: black;
+            font-weight: 2vw;
+            text-decoration: none;
+        }
+
+        .card figcaption .title.price {
+            color: #000;
+            font-weight: 1vw;
+        }
+
+        .interest {
+            background-color: #000;
+            width: 100%;
+            margin-top: -1vh;
+        }
+
+        .interest:hover {
+            background-color: grey;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3"style="background-color: white;">
+            <nav class="navbar">
+                <a href="http://127.0.0.1:8000/home/student-home/" class="navbar-brand mx-4 mb-3">
+                    <img src="{% static 'images/logo.jpg' %}" style="width: 170px; height: 120px;">
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    {% if user.is_authenticated %}
+                    <div class="position-relative">
+                        <a href="http://127.0.0.1:8000/home/update-profile-image/">
+                        <img class="rounded-circle" src="{{student.image.url}}" alt="" style="width: 60px; height: 60px;">
+                        </a>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">Welcome {{user.first_name}}</h6>
+                        <span>Student:{{student.branch}}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="http://127.0.0.1:8000/home/student-home/" class="nav-item nav-link "><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="http://127.0.0.1:8000/student/form/" class="nav-item nav-link"><i class="fa fa-pen me-2"></i>Edit Your Profile</a>
+                    <a href="http://127.0.0.1:8000/student/view-jobs/" class="nav-item nav-link active "><i
+                        class="fa fa-briefcase me-2"></i>Job Openings</a>
+                    <a href="{% url 'applied_jobs' %}" class="nav-item nav-link  "><i class="fa fa-plus me-2"></i> Applied Jobs</a>
+                    <a href="{% url 'change_password' %}" class="nav-item nav-link"><i class="fa fa-key me-2"></i>Change Password</a>
+                    <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Log Out</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand navbar-light sticky-top px-4 py-0">
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars" style="color: #b62a5e;"></i>
+                </a>
+            </nav>
+            <!-- Navbar End -->
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row">
+                    <p class="text-center fs-5 fw-bold text-dark" style="text-decoration: underline;margin-top:-5vh;">Please Select Up to 3 Options</p>
+                    {% for job in jobs %}
+                    <div class="col-md-3">
+                        <div class="card card-product-grid">
+                            <a href="{% url 'company_details' job.company.id %}" class="title">
+                                <img src="{{ job.company.image.url }}" width="250" height="170">
+                            </a>
+                            <figcaption>
+                                <a href="{% url 'company_details' job.company.id %}" class="title">{{ job.company.name }}</a>
+                                <div class="price mt-1">{{ job.slots }} Openings</div>
+                            </figcaption>
+                        </div>
+                        {% if not request.user.is_superuser and not button_state.is_hidden %}
+                        <a href="{% url 'try_job' job.id %}" class="btn btn-dark interest">
+                            <i class="fa fa-thumbs-up me-2"></i>Interested?
+                        </a>
+                        {% endif %}
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Campus Placement Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%), 
+                        url("https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text-box {
+            text-align: center;
+            color: #ffffff;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .text-box h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .text-box p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            color: #f8f9fa;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: 2px solid transparent;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .vistors {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .vistors-col {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vistors-col::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .vistors-col:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .vistors-col h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .vistors-col i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            padding: 2px 8px;
+            font-size: 0.65rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(102, 126, 234, 0.2);
+            margin-top: 15px;
+        }
+
+        .link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .admin-link {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .admin-link:hover {
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.5);
+        }
+
+        .student-link {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .student-link:hover {
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.5);
+        }
+
+        .company-link {
+            background: linear-gradient(135deg, #fd7e14 0%, #e83e8c 100%);
+            box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+        }
+
+        .company-link:hover {
+            box-shadow: 0 4px 15px rgba(253, 126, 20, 0.5);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            color: #bdc3c7;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .vistors-col {
+                padding: 2rem 1.5rem;
+            }
+            
+            .text-box {
+                padding: 0 15px;
+            }
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+</style>
+</head>
+<body>
+    <section class="header">
+        <div class="text-box floating-animation">
+            <h1>🎓 Campus Placement Management System</h1>
+            <p>Unlock Your Potential, Embrace Your Future: Empowering Students for Successful Placements!</p>
+            <a href="#login-section" class="hero-btn">
+                <i class="fas fa-rocket"></i> Get Started
+            </a>
+        </div>
+    </section>
+
+    <section class="vistors" id="login-section">
+        <h1 class="section-title">Enter the Gateway to Placement Success</h1>
+        <p class="section-subtitle">Choose your role and login to access the placement management system</p>
+        
+        <div class="row">
+            <div class="vistors-col">
+                <i class="fas fa-user-shield"></i>
+                <h3>Admin & Staff</h3>
+                <p>Manage the entire placement system, view statistics, and coordinate with companies.</p>
+                <a href="/admin/login/" class="link admin-link">
+                    <i class="fas fa-sign-in-alt"></i> Login as Admin
+                </a>
+            </div>
+            
+            <div class="vistors-col">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Student</h3>
+                <p>Browse job opportunities, apply for positions, and track your application status.</p>
+                <a href="/home/login/" class="link student-link">
+                    <i class="fas fa-sign-in-alt"></i> Login as Student
+                </a>
+            </div>
+            
+            <div class="vistors-col">
+                <i class="fas fa-building"></i>
+                <h3>Company</h3>
+                <p>Post job openings, review applications, and manage the hiring process.</p>
+                <a href="/company/login/" class="link company-link">
+                    <i class="fas fa-sign-in-alt"></i> Login as Company
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Campus Placement Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
