@@ -19,6 +19,8 @@ class StudentForm(forms.ModelForm):
 
 
 class ProfileImageForm(forms.ModelForm):
+    image = forms.FileField(required=False, widget=forms.FileInput(attrs={'accept': 'image/*'}))
+    
     class Meta:
         model = Student
         fields = ['image']
