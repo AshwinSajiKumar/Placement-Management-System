@@ -38,7 +38,7 @@ def change_password(request):
 def form_details(request):
     try:
         student = Student.objects.get(user=request.user)
-    except ObjectDoesNotExist:
+    except (Student.DoesNotExist, ObjectDoesNotExist):
         # Handle case where student object does not exist
         return redirect('login')
 
@@ -192,7 +192,7 @@ def form_details(request):
 def view_jobs(request):
     try:
         student = Student.objects.get(user=request.user)
-    except ObjectDoesNotExist:
+    except (Student.DoesNotExist, ObjectDoesNotExist):
         # Handle case where student object does not exist
         return redirect('login')
 
@@ -261,7 +261,7 @@ def try_job(request, job_id):
 def applied_jobs(request):
     try:
         student = Student.objects.get(user=request.user)
-    except ObjectDoesNotExist:
+    except (Student.DoesNotExist, ObjectDoesNotExist):
         # Handle case where student object does not exist
         return redirect('login')
 
