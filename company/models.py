@@ -6,7 +6,7 @@ from register.models import Student
 class Company(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='company_images', blank=True, null=True)
+    image = models.FileField(upload_to='company_images', blank=True, null=True)
 
     def __str__(self):
         return self.name
