@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+z8z5&qxjh6%&m+e=2w@wgob@n$c&g&hcr&$emr8v+6realr4_'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+z8z5&qxjh6%&m+e=2w@wgob@n$c&g&hcr&$emr8v+6realr4_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*', '.railway.app', '.render.com', '.pythonanywhere.com']
 
@@ -133,7 +133,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
