@@ -17,7 +17,7 @@ class Student(models.Model):
     branch = models.CharField(max_length=4, choices=BRANCH_CHOICES, null=True, default='Unknown')
     admission_no = models.CharField(max_length=50, blank=True, null=True)
     StdEmail = models.EmailField(max_length=255)
-    image = models.ImageField(upload_to='student_images', blank=True, null=True)
+    image = models.FileField(upload_to='student_images', blank=True, null=True)
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name='students', null=True)
     
 
