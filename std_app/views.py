@@ -24,7 +24,7 @@ def change_password(request):
             user=form.save()
             update_session_auth_hash(request,user)
             messages.success(request,"Your password has been changed successfully.")
-            return redirect('http://127.0.0.1:8000/home/student-home/')
+            return redirect('/home/student-home/')
         else:
             messages.error(request,"Please correct the error below.")
     else:
