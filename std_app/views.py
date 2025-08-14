@@ -176,11 +176,10 @@ def form_details(request):
         student_details = StudentDetails.objects.filter(user=request.user).first()
     
 
-    default_image_path = os.path.join(settings.STATIC_ROOT, 'default_image.jpg')
-
+    # Handle missing student image gracefully
     if not student.image:
-        # If the 'image' attribute has no file associated with it, use the default image path
-        student.image = default_image_path
+        # Use a default image path that exists in static files
+        student.image = '/static/images/default_image.jpg'
     context = {
         'student_details': student_details,
         'student': student,
@@ -201,12 +200,10 @@ def view_jobs(request):
     applied_jobs = JobApplication.objects.filter(student=student).values_list('job', flat=True)
     jobs = Job.objects.exclude(id__in=applied_jobs)
 
-    # Set a default image path
-    default_image_path = os.path.join(settings.STATIC_ROOT, 'default_image.jpg')
-
+    # Handle missing student image gracefully
     if not student.image:
-        # If the 'image' attribute has no file associated with it, use the default image path
-        student.image = default_image_path
+        # Use a default image path that exists in static files
+        student.image = '/static/images/default_image.jpg'
 
     context = {
         'jobs': jobs,
@@ -272,12 +269,10 @@ def applied_jobs(request):
     jobs = Job.objects.all()
     applications = JobApplication.objects.filter(student=student)
 
-    # Set a default image path
-    default_image_path = os.path.join(settings.STATIC_ROOT, 'default_image.jpg')
-
+    # Handle missing student image gracefully
     if not student.image:
-        # If the 'image' attribute has no file associated with it, use the default image path
-        student.image = default_image_path
+        # Use a default image path that exists in static files
+        student.image = '/static/images/default_image.jpg'
 
     context = {
         'applications': applications,
