@@ -58,7 +58,7 @@ def student_home(request):
             'placed_students': placed_students,
             'company_users': company_users,
         }
-    except ObjectDoesNotExist:
+    except (Student.DoesNotExist, ObjectDoesNotExist):
         # Handle case where student object does not exist
         return redirect('login')
     
