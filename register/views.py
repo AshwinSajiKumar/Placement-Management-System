@@ -62,11 +62,10 @@ def student_home(request):
         # Handle case where student object does not exist
         return redirect('login')
     
-    # Handle the case where the image is not associated with the 'image' field
+    # Handle missing student image gracefully
     if not student.image:
-        # Provide a default image or specify a placeholder image path
-        default_image_path = os.path.join(settings.STATIC_ROOT, 'default_image.jpg')
-        student.image = default_image_path
+        # Use a default image path that exists in static files
+        student.image = '/static/images/default_image.jpg'
     
     return render(request, 'student_home.html', context)
 
