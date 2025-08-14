@@ -62,7 +62,6 @@ A comprehensive Django-based web application for managing student placements, jo
 
 ### Admin Users
 - **Username**: `admin` | **Password**: `admin123`
-- **Username**: `admin2` | **Password**: `admin123`
 
 ### Staff Users (Password: `123456`)
 - `IT_HOD`, `CE_HOD`, `ECE_HOD`, `CSE_HOD`, `ME_HOD`, `EEE_HOD`, `AIDS_HOD`, `AEI_HOD`
@@ -73,50 +72,6 @@ A comprehensive Django-based web application for managing student placements, jo
 ### Student Users (Password: `123456`)
 - `Ashwin_IT`, `Ashleen_IT`, `Mishal_CSE`
 
-## 🌐 Deployment
-
-### Railway (Recommended)
-
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
-
-2. **Deploy on Railway**
-   - Go to [railway.app](https://railway.app)
-   - Connect your GitHub account
-   - Create new project from GitHub repo
-   - Railway will automatically detect Django and deploy
-
-3. **Environment Variables** (if needed)
-   - `DEBUG`: `False` (for production)
-   - `SECRET_KEY`: Generate a new secret key
-
-### Render
-
-1. **Create Render account**
-   - Go to [render.com](https://render.com)
-   - Sign up with GitHub
-
-2. **Deploy Web Service**
-   - Connect GitHub repository
-   - Choose "Web Service"
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `gunicorn stdplacement.wsgi:application`
-
-### PythonAnywhere
-
-1. **Create account**
-   - Go to [pythonanywhere.com](https://pythonanywhere.com)
-   - Sign up for free account
-
-2. **Upload and configure**
-   - Upload your code
-   - Configure WSGI file
-   - Set up virtual environment
-   - Install requirements
 
 ## 📁 Project Structure
 
